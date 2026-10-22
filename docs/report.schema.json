@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/meaning-diff/report.schema.json",
+  "title": "Meaning Diff report",
+  "type": "object",
+  "required": ["schema_version", "method", "before", "after", "changed_pairs", "signals"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "method": {
+      "type": "object",
+      "required": ["alignment", "threshold", "language", "limitations"],
+      "properties": {
+        "alignment": {"type": "string"},
+        "threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "language": {"const": "en"},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "before": {"$ref": "#/$defs/source"},
+    "after": {"$ref": "#/$defs/source"},
+    "changed_pairs": {"type": "array", "items": {"$ref": "#/$defs/pair"}},
+    "signals": {"type": "array", "items": {"$ref": "#/$defs/signal"}}
+  },
+  "$defs": {
+    "source": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "sentence": {
+      "type": "object", "required": ["id", "text", "line_start", "line_end"],
+      "properties": {
+        "id": {"type": "string"}, "text": {"type": "string"},
+        "line_start": {"type": "integer", "minimum": 1}, "line_end": {"type": "integer", "minimum": 1},
+        "context": {"type": "string"}
+      }
+    },
+    "pair": {
+      "type": "object", "required": ["id", "before", "after", "similarity"],
+      "properties": {
+        "id": {"type": "string"},
+        "before": {"anyOf": [{"$ref": "#/$defs/sentence"}, {"type": "null"}]},
+        "after": {"anyOf": [{"$ref": "#/$defs/sentence"}, {"type": "null"}]},
+        "similarity": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "signal": {
+      "type": "object", "required": ["id", "pair_id", "kind", "priority", "message"],
+      "properties": {
+        "id": {"type": "string"}, "pair_id": {"type": "string"},
+        "kind": {"enum": ["number_changed", "modal_changed", "negation_changed", "condition_changed", "sentence_dropped", "sentence_added"]},
+        "priority": {"enum": ["high", "medium", "low"]}, "message": {"type": "string"},
+        "before_tokens": {}, "after_tokens": {}
+      }
+    }
+  }
+}

@@ -55,3 +55,7 @@ CLI adds file paths and original-byte hashes. Pure API must not read the filesys
 Required: source-located segmentation, deterministic alignment, five signal families plus additions, JSON/Markdown, useful tests. Deferred: semantic embeddings, entailment, automatic acceptance, translation, DOCX/PDF ingestion, AST-level policy comparison. No “no meaning changed” message; say “no configured heuristic signals detected.”
 
 Build segmentation/alignment, then literal detectors, then the report and CLI. Done means a reviewer can inspect all consequential fixture edits and see why each was flagged, including the heuristic limits.
+
+## Independent review refinement
+
+The bounded condition vocabulary also includes `only after`, `only before`, `provided that`, and `as long as`. These cover the motivating approval-precondition example without claiming general logical parsing. Regression tests distinguish a removed condition from an unchanged exact condition.
