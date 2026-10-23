@@ -9,7 +9,7 @@ description = "Inspect consequential changes in rewritten text."
 requires-python = ">=3.11"
 authors = [{name = "Anuj Sadani"}]
 readme = "README.md"
-license = {text = "Proprietary"}
+license = {text = "MIT"}
 dependencies = []
 
 [project.scripts]

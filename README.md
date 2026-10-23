@@ -73,3 +73,7 @@ python -m unittest discover -s tests -v
 The pure API (`split_sentences`, `align_sentences`, `detect_signals`, `compare_texts`, `render_markdown`) does not read files. The CLI alone reads source bytes and adds path and SHA-256 provenance.
 
 See [verification coverage](docs/VERIFICATION.md) and [the design plan](docs/PLAN.md) for tested behavior and remaining limits.
+
+## License
+
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Anuj Sadani.
