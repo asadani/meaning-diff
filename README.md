@@ -1,4 +1,6 @@
-<p align="center"><img src="assets/logo.svg" alt="Meaning Diff" width="310"></p>
+<p align="center">
+  <img src="assets/logo.svg" alt="Meaning Diff — See what the rewrite changed" width="400" height="160">
+</p>
 
 Meaning Diff helps a reviewer find prose edits that may deserve a closer look: changed quantities, modal or requirement words, negations, conditions, and dropped or added sentences. It places the literal before and after text beside source line numbers. The output is a set of heuristic review signals; it never decides whether meaning was preserved.
 
